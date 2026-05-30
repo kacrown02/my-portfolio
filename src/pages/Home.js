@@ -53,8 +53,8 @@ const certifications = [
   { name: "Advanced Python", issuer: "Simplilearn SkillUp", platform: "Simplilearn", date: "April 15, 2026", icon: "🔥", image: cert12 },
   { name: "Deep Learning with TensorFlow and PyTorch", issuer: "Simplilearn SkillUp", platform: "Simplilearn", date: "April 16, 2026", icon: "🧠", image: cert13 },
    { name: "Introduce to Database and SQL", issuer: "Great Learning", platform: "Great Learning", date: "August 2024", icon: "🛢️", image: cert6 },
-  { name: "Real Estate Virtual Assistant Course", issuer: "Freelance Academy", platform: "Freelance Academy", date: null, icon: "📑", image: cert2 },
-  { name: "Virtual Assistant Social Media Marketing Course", issuer: "Freelance Academy", platform: "Freelance Academy", date: null, icon: "📱", image: cert3 },
+  { name: "Real Estate Virtual Assistant Course", issuer: "Freelance Academy", platform: "Freelance Academy", date: "January 17, 2026", icon: "📑", image: cert2 },
+  { name: "Virtual Assistant Social Media Marketing Course", issuer: "Freelance Academy", platform: "Freelance Academy", date: "January 17, 2026", icon: "📱", image: cert3 },
 ];
 
 const platforms = ["All", "Simplilearn", "Great Learning", "Freelance Academy"];
