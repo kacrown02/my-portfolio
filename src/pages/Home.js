@@ -42,11 +42,9 @@ const education = [
 ];
 
 const certifications = [
-  { name: "Introduce to Database and SQL", issuer: "Great Learning", platform: "Great Learning", date: null, icon: "🛢️", image: cert6 },
-  { name: "Introduce to Front End Development", issuer: "Simplilearn SkillUp", platform: "Simplilearn", date: null, icon: "🌐", image: cert4 },
-  { name: "Getting Started with Full Stack Java Development", issuer: "Simplilearn SkillUp", platform: "Simplilearn", date: null, icon: "💻", image: cert5 },
-  { name: "Real Estate Virtual Assistant Course", issuer: "Freelance Academy", platform: "Freelance Academy", date: null, icon: "📑", image: cert2 },
-  { name: "Virtual Assistant Social Media Marketing Course", issuer: "Freelance Academy", platform: "Freelance Academy", date: null, icon: "📱", image: cert3 },
+
+  { name: "Introduce to Front End Development", issuer: "Simplilearn SkillUp", platform: "Simplilearn", date: "April 5, 2026", icon: "🌐", image: cert4 },
+  { name: "Getting Started with Full Stack Java Development", issuer: "Simplilearn SkillUp", platform: "Simplilearn", date: "April 4, 2026", icon: "💻", image: cert5 },
   { name: "Introduction to SQL", issuer: "Simplilearn SkillUp", platform: "Simplilearn", date: "April 8, 2026", icon: "🛢️", image: cert7 },
   { name: "ReactJS for Beginners", issuer: "Simplilearn SkillUp", platform: "Simplilearn", date: "April 9, 2026", icon: "⚛️", image: cert8 },
   { name: "Introduction to Computer Networking", issuer: "Simplilearn SkillUp", platform: "Simplilearn", date: "April 11, 2026", icon: "🌐", image: cert9 },
@@ -54,6 +52,9 @@ const certifications = [
   { name: "Python for Beginners", issuer: "Simplilearn SkillUp", platform: "Simplilearn", date: "April 14, 2026", icon: "🐍", image: cert11 },
   { name: "Advanced Python", issuer: "Simplilearn SkillUp", platform: "Simplilearn", date: "April 15, 2026", icon: "🔥", image: cert12 },
   { name: "Deep Learning with TensorFlow and PyTorch", issuer: "Simplilearn SkillUp", platform: "Simplilearn", date: "April 16, 2026", icon: "🧠", image: cert13 },
+   { name: "Introduce to Database and SQL", issuer: "Great Learning", platform: "Great Learning", date: "August 2024", icon: "🛢️", image: cert6 },
+  { name: "Real Estate Virtual Assistant Course", issuer: "Freelance Academy", platform: "Freelance Academy", date: null, icon: "📑", image: cert2 },
+  { name: "Virtual Assistant Social Media Marketing Course", issuer: "Freelance Academy", platform: "Freelance Academy", date: null, icon: "📱", image: cert3 },
 ];
 
 const platforms = ["All", "Simplilearn", "Great Learning", "Freelance Academy"];
