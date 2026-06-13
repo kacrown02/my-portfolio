@@ -25,7 +25,6 @@ const skills = [
   { label: "Python", pct: 75, color: "#ffd166" },
   { label: "Social Media Promotional Design", pct: 75, color: "#90e0ef" },
 ];
-
 const education = [
   {
     degree: "ICT - Computer System Programming",
@@ -40,9 +39,7 @@ const education = [
     icon: "💻",
   },
 ];
-
 const certifications = [
-
   { name: "Introduce to Front End Development", issuer: "Simplilearn SkillUp", platform: "Simplilearn", date: "April 5, 2026", icon: "🌐", image: cert4 },
   { name: "Getting Started with Full Stack Java Development", issuer: "Simplilearn SkillUp", platform: "Simplilearn", date: "April 4, 2026", icon: "💻", image: cert5 },
   { name: "Introduction to SQL", issuer: "Simplilearn SkillUp", platform: "Simplilearn", date: "April 8, 2026", icon: "🛢️", image: cert7 },
@@ -52,13 +49,11 @@ const certifications = [
   { name: "Python for Beginners", issuer: "Simplilearn SkillUp", platform: "Simplilearn", date: "April 14, 2026", icon: "🐍", image: cert11 },
   { name: "Advanced Python", issuer: "Simplilearn SkillUp", platform: "Simplilearn", date: "April 15, 2026", icon: "🔥", image: cert12 },
   { name: "Deep Learning with TensorFlow and PyTorch", issuer: "Simplilearn SkillUp", platform: "Simplilearn", date: "April 16, 2026", icon: "🧠", image: cert13 },
-   { name: "Introduce to Database and SQL", issuer: "Great Learning", platform: "Great Learning", date: "August 2024", icon: "🛢️", image: cert6 },
+  { name: "Introduce to Database and SQL", issuer: "Great Learning", platform: "Great Learning", date: "August 2024", icon: "🛢️", image: cert6 },
   { name: "Real Estate Virtual Assistant Course", issuer: "Freelance Academy", platform: "Freelance Academy", date: "January 17, 2026", icon: "📑", image: cert2 },
   { name: "Virtual Assistant Social Media Marketing Course", issuer: "Freelance Academy", platform: "Freelance Academy", date: "January 17, 2026", icon: "📱", image: cert3 },
 ];
-
 const platforms = ["All", "Simplilearn", "Great Learning", "Freelance Academy"];
-
 const platformColors = {
   "Simplilearn":       { color: "#00b4d8", bg: "rgba(0,180,216,0.12)", border: "rgba(0,180,216,0.3)" },
   "Great Learning":    { color: "#e9c46a", bg: "rgba(233,196,106,0.12)", border: "rgba(233,196,106,0.3)" },
@@ -71,7 +66,6 @@ function useTypingAnimation(words, speed = 100, pause = 1800) {
   const [wordIndex, setWordIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [deleting, setDeleting] = useState(false);
-
   useEffect(() => {
     const current = words[wordIndex];
     let timeout;
@@ -88,7 +82,6 @@ function useTypingAnimation(words, speed = 100, pause = 1800) {
     setDisplay(current.slice(0, charIndex));
     return () => clearTimeout(timeout);
   }, [charIndex, deleting, wordIndex, words, speed, pause]);
-
   return display;
 }
 
@@ -182,15 +175,12 @@ export default function Home() {
   const { ref: skillsRef, animated: skillsAnimated } = useSkillsAnimation();
   const [selectedCert, setSelectedCert] = useState(null);
   const [activeTab, setActiveTab] = useState("All");
-
   const roles = ["Frontend Developer", "UI Designer", "Creative Technologist", "React Developer"];
   const typedText = useTypingAnimation(roles, 80, 2000);
-
   const recentCount = certifications.filter((c) => c.date).length;
   const latestCert = [...certifications].filter((c) => c.date).sort((a, b) =>
     new Date(b.date) - new Date(a.date)
   )[0];
-
   const filteredCerts = activeTab === "All"
     ? certifications
     : certifications.filter((c) => c.platform === activeTab);
@@ -203,7 +193,6 @@ export default function Home() {
   return (
     <>
       <div className="page-enter">
-
         {/* ══ HERO ══ */}
         <section className="hero-section">
           <div className="hero-bg-glow" />
@@ -238,10 +227,39 @@ export default function Home() {
               &{" "}
               <span style={{ color: "#f4a261", fontWeight: 700 }}>Creativity</span>.
             </p>
+
+            {/* ── HERO BUTTONS ── */}
             <div className="hero-buttons reveal">
-              <Link to="/portfolio" className="btn-primary">View My Work</Link>
-              <Link to="/contact" className="btn-secondary">Contact Me</Link>
+              <Link to="/portfolio" className="btn-primary">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                  <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+                  <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+                </svg>
+                View My Work
+              </Link>
+
+              <div className="btn-divider" />
+
+              <Link to="/contact" className="btn-secondary">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+                Contact Me
+              </Link>
+
+              <a
+                href="/MyResume.pdf"
+                download="Crown_James_Cedeno_Resume.pdf"
+                className="btn-resume"
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                  <path d="M12 3v13M5 14l7 7 7-7" />
+                  <path d="M3 21h18" />
+                </svg>
+                Download Resume
+              </a>
             </div>
+            <p className="btn-hint">PDF · Updated 2026</p>
           </div>
         </section>
 
@@ -262,7 +280,6 @@ export default function Home() {
         {/* ══ EDUCATION — horizontal timeline ══ */}
         <section className="section" id="education">
           <SectionTitle eyebrow="My Journey" title="Education" color="#0077b6" />
-
           <div className="edu-horiz-timeline reveal">
             {education.map((e, i) => (
               <React.Fragment key={e.degree}>
@@ -350,7 +367,6 @@ export default function Home() {
           <div className="cert-grid">
             {filteredCerts.map((c) => {
               const pc = platformColors[c.platform] || { color: "#00b4d8", bg: "rgba(0,180,216,0.1)", border: "rgba(0,180,216,0.25)" };
-              const isNew = !!c.date;
               return (
                 <div
                   className="cert-grid-card reveal"
@@ -358,20 +374,13 @@ export default function Home() {
                   onClick={() => setSelectedCert(c)}
                   style={{ "--card-accent": pc.color }}
                 >
-                  {/* Top accent bar */}
                   <div className="cert-grid-top-bar" style={{ background: pc.color, boxShadow: `0 0 8px ${pc.color}88` }} />
-
-                  {/* Icon */}
                   <div className="cert-grid-icon-wrap" style={{ background: pc.bg, border: `1px solid ${pc.border}` }}>
                     <span className="cert-grid-emoji">{c.icon}</span>
                   </div>
-
-                  {/* Info */}
                   <div className="cert-grid-name">{c.name}</div>
                   <div className="cert-grid-issuer" style={{ color: pc.color }}>{c.issuer}</div>
                   {c.date && <div className="cert-grid-date">{c.date}</div>}
-
-                  {/* View hint */}
                   <div className="cert-grid-view" style={{ color: pc.color }}>
                     VIEW CERTIFICATE ›
                   </div>
@@ -380,7 +389,6 @@ export default function Home() {
             })}
           </div>
         </section>
-
       </div>
 
       {/* ══ CERT MODAL ══ */}
@@ -405,6 +413,86 @@ export default function Home() {
 
       {/* ══ INJECTED STYLES ══ */}
       <style>{`
+        /* ── Button divider ── */
+        .btn-divider {
+          width: 1px;
+          height: 32px;
+          background: rgba(255,255,255,0.1);
+          flex-shrink: 0;
+        }
+
+        /* ── PDF hint ── */
+        .btn-hint {
+          font-size: 0.68rem;
+          color: rgba(255,255,255,0.2);
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          margin-top: 14px;
+        }
+
+        /* ── Secondary button override (polished outlined) ── */
+        .btn-secondary {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 11px 24px;
+          border-radius: 10px;
+          border: 1.5px solid rgba(255,255,255,0.18);
+          background: transparent;
+          color: rgba(255,255,255,0.8);
+          font-size: 0.88rem;
+          font-weight: 700;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          text-decoration: none;
+          cursor: pointer;
+          transition: all 0.25s ease;
+          backdrop-filter: blur(4px);
+        }
+        .btn-secondary:hover {
+          border-color: rgba(255,255,255,0.45);
+          color: #fff;
+          background: rgba(255,255,255,0.06);
+          transform: translateY(-2px);
+        }
+
+        /* ── Resume Button (polished cyan outlined) ── */
+        .btn-resume {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 11px 24px;
+          border-radius: 10px;
+          border: 1.5px solid rgba(0, 212, 255, 0.4);
+          background: transparent;
+          color: #00d4ff;
+          font-size: 0.88rem;
+          font-weight: 700;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          text-decoration: none;
+          cursor: pointer;
+          transition: all 0.25s ease;
+          backdrop-filter: blur(4px);
+          position: relative;
+        }
+        .btn-resume:hover {
+          border-color: #00d4ff;
+          background: rgba(0, 212, 255, 0.08);
+          box-shadow: 0 0 20px rgba(0,212,255,0.2), inset 0 0 20px rgba(0,212,255,0.04);
+          transform: translateY(-2px);
+          color: #00eeff;
+        }
+        .btn-resume svg {
+          animation: nudgeDown 1.8s ease-in-out infinite;
+          flex-shrink: 0;
+        }
+        @keyframes nudgeDown {
+          0%, 100% { transform: translateY(0);   }
+          50%       { transform: translateY(3px); }
+        }
+
+        /* ── Typing cursor ── */
         .typing-cursor {
           display: inline-block;
           color: #00b4d8;
@@ -416,6 +504,8 @@ export default function Home() {
           0%, 100% { opacity: 1; }
           50%       { opacity: 0; }
         }
+
+        /* ── Particles ── */
         .hero-particles {
           position: absolute;
           inset: 0;
@@ -434,6 +524,7 @@ export default function Home() {
           50%  { transform: translateY(-30px) scale(1.3); opacity: 1;   }
           100% { transform: translateY(0px) scale(1);     opacity: 0.6; }
         }
+
         .skill-label { font-size: 0.92rem; color: #ccc; }
         .skill-pct   { font-size: 0.92rem; font-weight: 700; }
         .section-line {
@@ -471,10 +562,7 @@ export default function Home() {
           box-shadow: 0 0 28px rgba(0,180,216,0.15);
           transform: translateY(-4px);
         }
-        .edu-horiz-icon {
-          font-size: 2rem;
-          margin-bottom: 12px;
-        }
+        .edu-horiz-icon { font-size: 2rem; margin-bottom: 12px; }
         .edu-horiz-year {
           font-size: 0.72rem;
           color: #0077b6;
@@ -491,11 +579,7 @@ export default function Home() {
           margin-bottom: 6px;
           line-height: 1.3;
         }
-        .edu-horiz-school {
-          font-size: 0.8rem;
-          color: #666;
-          line-height: 1.4;
-        }
+        .edu-horiz-school { font-size: 0.8rem; color: #666; line-height: 1.4; }
         .edu-horiz-connector {
           display: flex;
           flex-direction: column;
@@ -511,11 +595,7 @@ export default function Home() {
           background: linear-gradient(90deg, #0077b6, #00b4d8);
           box-shadow: 0 0 8px #0077b688;
         }
-        .edu-horiz-arrow {
-          font-size: 1.1rem;
-          color: #00b4d8;
-          text-shadow: 0 0 8px #00b4d888;
-        }
+        .edu-horiz-arrow { font-size: 1.1rem; color: #00b4d8; text-shadow: 0 0 8px #00b4d888; }
         @media (max-width: 640px) {
           .edu-horiz-timeline { flex-direction: column; }
           .edu-horiz-connector { transform: rotate(90deg); padding: 8px 0; }
@@ -590,9 +670,7 @@ export default function Home() {
           border-color: rgba(255,255,255,0.3);
           color: rgba(255,255,255,0.8);
         }
-        .cert-tab-active {
-          font-weight: 700;
-        }
+        .cert-tab-active { font-weight: 700; }
         .cert-tab-count {
           font-size: 0.7rem;
           background: rgba(255,255,255,0.1);
@@ -600,9 +678,7 @@ export default function Home() {
           border-radius: 20px;
           font-weight: 700;
         }
-        .cert-tab-active .cert-tab-count {
-          background: rgba(255,255,255,0.15);
-        }
+        .cert-tab-active .cert-tab-count { background: rgba(255,255,255,0.15); }
 
         /* ══ CERT GRID ══ */
         .cert-grid {
@@ -641,16 +717,6 @@ export default function Home() {
           height: 3px;
           border-radius: 16px 16px 0 0;
         }
-        .cert-new-badge {
-          position: absolute;
-          top: 10px;
-          right: 10px;
-          font-size: 0.6rem;
-          font-weight: 900;
-          letter-spacing: 0.1em;
-          padding: 2px 7px;
-          border-radius: 20px;
-        }
         .cert-grid-icon-wrap {
           width: 52px;
           height: 52px;
@@ -669,15 +735,8 @@ export default function Home() {
           line-height: 1.35;
           flex: 1;
         }
-        .cert-grid-issuer {
-          font-size: 0.72rem;
-          font-weight: 600;
-          letter-spacing: 0.03em;
-        }
-        .cert-grid-date {
-          font-size: 0.68rem;
-          color: #555;
-        }
+        .cert-grid-issuer { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.03em; }
+        .cert-grid-date { font-size: 0.68rem; color: #555; }
         .cert-grid-view {
           font-size: 0.65rem;
           font-weight: 700;
