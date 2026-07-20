@@ -24,10 +24,9 @@ export default function LoadingScreen({ onComplete }) {
   ];
 
   const SKILL_TAGS = [
-    { label: "React",      color: "#00d4ff", border: "rgba(0,212,255,0.3)",   bg: "rgba(0,212,255,0.08)"   },
-    { label: "UI/UX",      color: "#bf00ff", border: "rgba(191,0,255,0.3)",   bg: "rgba(191,0,255,0.08)"   },
-    { label: "Python",     color: "#ff00c8", border: "rgba(255,0,200,0.3)",   bg: "rgba(255,0,200,0.08)"   },
-    { label: "Full Stack", color: "#00ffb3", border: "rgba(0,255,179,0.3)",   bg: "rgba(0,255,179,0.08)"   },
+    { label: "Frontend Developer",      color: "#00d4ff", border: "rgba(0,212,255,0.3)",   bg: "rgba(0,212,255,0.08)"   },
+    { label: "React Developer",      color: "#bf00ff", border: "rgba(191,0,255,0.3)",   bg: "rgba(191,0,255,0.08)"   },
+    { label: "Full-Stack Developer",     color: "#ff00c8", border: "rgba(255,0,200,0.3)",   bg: "rgba(255,0,200,0.08)"   },
   ];
 
   const getStatus = (pct) => {
@@ -194,7 +193,7 @@ export default function LoadingScreen({ onComplete }) {
           <div className="lr-glitch lr-name" data-text="CROWN JAMES">CROWN JAMES</div>
 
           {/* Role */}
-          <div className="lr-role">Aspiring Software Developer</div>
+          <div className="lr-role">Full-Stack Development</div>
 
           {/* Skill tags */}
           <div className="lr-skills">
