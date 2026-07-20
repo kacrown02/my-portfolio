@@ -16,14 +16,22 @@ import cert13 from "../assets/deeplearning.png";
 
 /* ── DATA ── */
 const skills = [
-  { label: "HTML", pct: 88, color: "#00b4d8" },
-  { label: "CSS", pct: 85, color: "#0077b6" },
-  { label: "Javascript", pct: 80, color: "#e9c46a" },
-  { label: "C#", pct: 75, color: "#00d4f0" },
-  { label: "React Ecosystem (React.js, React Native, Expo)", pct: 90, color: "#f4a261" },
-  { label: "Basic SQL", pct: 75, color: "#48cae4" },
-  { label: "Python", pct: 75, color: "#ffd166" },
-  { label: "Social Media Promotional Design", pct: 75, color: "#90e0ef" },
+  { label: "HTML5", pct: 90, color: "#E34F26" },
+  { label: "CSS3", pct: 88, color: "#1572B6" },
+  { label: "JavaScript (ES6+)", pct: 88, color: "#F7DF1E" },
+  { label: "TypeScript", pct: 80, color: "#3178C6" },
+  { label: "React.js", pct: 88, color: "#61DAFB" },
+  { label: "Next.js", pct: 80, color: "#000000" },
+  { label: "React Native", pct: 80, color: "#61DAFB" },
+  { label: "Bootstrap", pct: 85, color: "#7952B3" },
+  { label: "Tailwind CSS", pct: 85, color: "#06B6D4" },
+  { label: "Node.js", pct: 80, color: "#339933" },
+  { label: "Express.js", pct: 80, color: "#444444" },
+  { label: "Python", pct: 78, color: "#3776AB" },
+  { label: "Laravel (Basic)", pct: 65, color: "#FF2D20" },
+  { label: "MySQL", pct: 82, color: "#4479A1" },
+  { label: "Firebase", pct: 75, color: "#FFCA28" },
+  { label: "Supabase", pct: 75, color: "#3ECF8E" },
 ];
 const education = [
   {
@@ -175,7 +183,7 @@ export default function Home() {
   const { ref: skillsRef, animated: skillsAnimated } = useSkillsAnimation();
   const [selectedCert, setSelectedCert] = useState(null);
   const [activeTab, setActiveTab] = useState("All");
-  const roles = ["Frontend Developer", "UI Designer", "Creative Technologist", "React Developer"];
+  const roles = ["Frontend Developer", "React Developer", "Full-Stack Developer"];
   const typedText = useTypingAnimation(roles, 80, 2000);
   const recentCount = certifications.filter((c) => c.date).length;
   const latestCert = [...certifications].filter((c) => c.date).sort((a, b) =>
@@ -214,18 +222,18 @@ export default function Home() {
               <img src={profilePic} alt="Crown James" className="avatar-img" />
               <span className="avatar-online" />
             </div>
-            <p className="hero-eyebrow reveal">ASPIRING SOFTWARE DEVELOPER</p>
+            <p className="hero-eyebrow reveal">Full-Stack Developer</p>
             <h1 className="hero-title reveal">Hi, I'm Crown James</h1>
             <p className="hero-subtitle reveal">
               <span className="typing-text">{typedText}</span>
               <span className="typing-cursor">|</span>
             </p>
             <p className="hero-desc reveal">
-              Building modern digital experiences through{" "}
-              <span style={{ color: "#00b4d8", fontWeight: 700 }}>Technology</span>,{" "}
-              <span style={{ color: "#0077b6", fontWeight: 700 }}>Design</span>{" "}
-              &{" "}
-              <span style={{ color: "#f4a261", fontWeight: 700 }}>Creativity</span>.
+             Building responsive and scalable web applications with{" "}
+<span style={{ color: "#00b4d8", fontWeight: 700 }}>React</span>,{" "}
+<span style={{ color: "#0077b6", fontWeight: 700 }}>Next.js</span>{" "}
+&{" "}
+<span style={{ color: "#f4a261", fontWeight: 700 }}>Modern Web Technologies</span>.
             </p>
 
             {/* ── HERO BUTTONS ── */}

@@ -1,17 +1,64 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import profilePic from "../assets/grad.jpg";
 import certificateImg from "../assets/techno.jpg";
 import certificate2Img from "../assets/japan.png";
 
-const languages = [
-  { name: "HTML",       level: 92, icon: "H",   color: "#00D9FF" },
-  { name: "CSS",        level: 88, icon: "C",   color: "#D100FF" },
-  { name: "JavaScript", level: 80, icon: "JS",  color: "#FFD500" },
-  { name: "C#",         level: 80, icon: "C#",  color: "#00FF99" },
-  { name: "React Ecosystem (React.js, React Native, Expo)", level: 74, icon: "R", color: "#6A00FF" },
-  { name: "Basic SQL",  level: 70, icon: "SQL", color: "#FF4D9D" },
-  { name: "Python",     level: 68, icon: "Py",  color: "#FF8800" },
-];
+const technicalSkills = {
+  frontend: {
+    label: "Frontend",
+    color: "#00D9FF",
+    items: [
+      "HTML5",
+      "CSS3",
+      "JavaScript (ES6+)",
+      "TypeScript",
+      "React.js",
+      "Next.js",
+      "React Native",
+      "Bootstrap",
+      "Tailwind CSS",
+    ],
+  },
+  backend: {
+    label: "Backend",
+    color: "#00ffb3",
+    items: [
+      "Node.js",
+      "Express.js",
+      "Python",
+      "Laravel",
+    ],
+  },
+  database: {
+    label: "Database",
+    color: "#bf00ff",
+    items: [
+      "MySQL",
+      "Firebase",
+      "Supabase",
+    ],
+  },
+  aiTools: {
+    label: "AI Tools",
+    color: "#ff00c8",
+    items: [
+      "ChatGPT",
+      "GitHub Copilot",
+      "Claude",
+    ],
+  },
+  toolsAndPlatforms: {
+    label: "Tools & Platforms",
+    color: "#FFD500",
+    items: [
+      "Git",
+      "GitHub",
+      "Postman",
+      "Vercel",
+      "VS Code",
+    ],
+  },
+};
 
 const awards = [
   {
@@ -65,13 +112,9 @@ const infoItems = [
   { label: "Status", value: "Open to Opportunities", iconType: "status", iconColor: "#00ffb3" },
 ];
 
-const bioFull = `Passionate about building modern digital solutions through frontend development, creative design, and user-focused experiences. With a strong foundation in programming, web development, and digital design, I bring hands-on experience in creating responsive websites, mobile applications, and creative branding materials.
+const bioFull = `I'm passionate about building modern digital experiences through frontend development, full-stack web development, and user-centered design. With hands-on experience in React.js, Next.js, React Native, Node.js, Express.js, Python, MySQL, Firebase, and Supabase, I enjoy creating responsive websites and mobile applications that are functional, scalable, and easy to use.
 
-Driven by curiosity, continuous learning, and real-world experience, I continuously enhance my technical and creative skills through projects, certifications, and practical applications. I aim to deliver functional, user-friendly, and visually engaging digital experiences.
-
-From frontend development to digital content creation, I enjoy working where technology meets creativity and user experience. Beyond technical expertise, I value professionalism, collaboration, adaptability, and clear communication in every project I contribute to.
-
-My goal is to grow into a versatile IT professional capable of transforming innovative ideas into impactful and meaningful digital solutions.`;
+Driven by continuous learning and real-world experience, I've developed practical skills in REST API integration, database management, authentication, and AI-assisted development. I'm committed to writing clean, maintainable code and delivering digital solutions that combine functionality, performance, and an excellent user experience.`;
 
 const bioShort = bioFull.split("\n\n").slice(0, 2).join("\n\n");
 
@@ -88,73 +131,27 @@ function useScrollReveal() {
   }, []);
 }
 
-/* ── HOOK: language bars animate when in view ── */
-function useLangAnimation() {
-  const [animated, setAnimated] = useState(false);
-  const ref = useRef(null);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setAnimated(true); },
-      { threshold: 0.2 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-  return { ref, animated };
-}
-
-/* ── HOOK: count up animation ── */
-function useCounter(target, animated, duration = 1000) {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    if (!animated) return;
-    let start = 0;
-    const step = target / (duration / 16);
-    const timer = setInterval(() => {
-      start += step;
-      if (start >= target) { setCount(target); clearInterval(timer); }
-      else setCount(Math.floor(start));
-    }, 16);
-    return () => clearInterval(timer);
-  }, [animated, target, duration]);
-  return count;
-}
-
-/* ── Language Card ── */
-function LangCard({ lang, animated, delay }) {
-  const count = useCounter(lang.level, animated);
+/* ── Skill category block (badge/pill style) ── */
+function SkillCategoryBlock({ category, delay }) {
+  const { label, color, items } = category;
   return (
-    <div
-      className="lang-card reveal"
-      style={{ animationDelay: `${delay}s`, border: `1px solid ${lang.color}28` }}
-    >
-      <div
-        className="lang-icon"
-        style={{
-          background: `${lang.color}18`,
-          border: `2px solid ${lang.color}55`,
-          color: lang.color,
-          textShadow: `0 0 8px ${lang.color}`,
-          boxShadow: `0 0 16px ${lang.color}33`,
-          fontSize: lang.icon.length > 1 ? 12 : 18,
-        }}
-      >
-        {lang.icon}
+    <div className="skill-category reveal" style={{ animationDelay: `${delay}s`, borderColor: `${color}30` }}>
+      <div className="skill-category-header">
+        <span className="skill-category-dot" style={{ background: color, boxShadow: `0 0 8px ${color}` }} />
+        <span className="skill-category-label" style={{ color }}>{label}</span>
       </div>
-      <div className="lang-name">{lang.name}</div>
-      <div className="lang-bar-track">
-        <div
-          className="lang-bar-fill"
-          style={{
-            width: animated ? `${lang.level}%` : "0%",
-            background: lang.color,
-            boxShadow: animated ? `0 0 8px ${lang.color}99, 0 0 16px ${lang.color}44` : "none",
-            transition: `width 1.1s cubic-bezier(0.4,0,0.2,1) ${delay}s, box-shadow 1.1s ease`,
-          }}
-        />
-      </div>
-      <div className="lang-level" style={{ color: lang.color, textShadow: `0 0 8px ${lang.color}88` }}>
-        {count}%
+      <div className="skill-pill-wrap">
+        {items.map((item) => (
+          <span
+            key={item}
+            className="skill-pill"
+            style={{ borderColor: `${color}44`, color: "#eaeaea" }}
+            onMouseEnter={(e) => { e.currentTarget.style.borderColor = color; e.currentTarget.style.boxShadow = `0 0 10px ${color}55`; }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor = `${color}44`; e.currentTarget.style.boxShadow = "none"; }}
+          >
+            {item}
+          </span>
+        ))}
       </div>
     </div>
   );
@@ -162,7 +159,6 @@ function LangCard({ lang, animated, delay }) {
 
 export default function About() {
   useScrollReveal();
-  const { ref: langRef, animated: langAnimated } = useLangAnimation();
   const [selectedAward, setSelectedAward] = useState(null);
   const [bioExpanded, setBioExpanded] = useState(false);
 
@@ -174,7 +170,6 @@ export default function About() {
   return (
     <>
       <div className="page-enter section edu-container">
-
         {/* ── Title ── */}
         <div className="section-title-wrap reveal">
           <p className="section-eyebrow" style={{ color: "#00ffb3", textShadow: "0 0 10px #00ffb388" }}>
@@ -185,10 +180,8 @@ export default function About() {
         </div>
 
         <div className="about-wrapper">
-
           {/* ── Bio block ── */}
           <div className="about-top reveal">
-
             {/* Profile picture */}
             <div style={{
               flexShrink: 0,
@@ -220,7 +213,6 @@ export default function About() {
             <div className="about-text">
               <h3 className="about-name">Crown James</h3>
               <p className="about-role">FRONTEND DEVELOPER & DESIGNER</p>
-
               <p className="about-bio" style={{ whiteSpace: "pre-line" }}>
                 {bioExpanded ? bioFull : bioShort}
               </p>
@@ -279,31 +271,18 @@ export default function About() {
             margin: "0 0 48px",
           }} />
 
-          {/* ── Languages ── */}
-          <div className="about-langs-section" ref={langRef}>
+          {/* ── Skills ── */}
+          <div className="about-skills-section">
             <div className="section-title-wrap reveal" style={{ marginBottom: 28 }}>
               <p className="section-eyebrow" style={{ color: "#ff00c8", textShadow: "0 0 10px #ff00c888" }}>
                 Tech Stack
               </p>
-              <h2 className="section-title">Languages</h2>
+              <h2 className="section-title">Skills</h2>
               <div className="section-line" style={{ background: "linear-gradient(90deg, #ff00c8, #bf00ff)", boxShadow: "0 0 12px #ff00c888" }} />
             </div>
-            <div className="langs-grid">
-              {languages.slice(0, 4).map((l, i) => (
-                <LangCard key={l.name} lang={l} animated={langAnimated} delay={i * 0.08} />
-              ))}
-            </div>
-            <div style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: "16px",
-              marginTop: "16px",
-              flexWrap: "wrap",
-            }}>
-              {languages.slice(4).map((l, i) => (
-                <div key={l.name} style={{ width: "calc(25% - 12px)", minWidth: 140, maxWidth: 200 }}>
-                  <LangCard lang={l} animated={langAnimated} delay={(i + 4) * 0.08} />
-                </div>
+            <div className="skills-grid">
+              {Object.values(technicalSkills).map((category, i) => (
+                <SkillCategoryBlock key={category.label} category={category} delay={i * 0.08} />
               ))}
             </div>
           </div>
@@ -342,7 +321,6 @@ export default function About() {
               ))}
             </div>
           </div>
-
         </div>
       </div>
 
@@ -375,11 +353,6 @@ export default function About() {
           border-color: rgba(0,217,255,0.4);
           box-shadow: 0 0 12px rgba(0,217,255,0.15);
         }
-        .about-info-icon {
-          font-size: 1rem;
-          margin-top: 2px;
-          flex-shrink: 0;
-        }
         .about-info-label {
           display: block;
           font-size: 0.7rem;
@@ -395,75 +368,60 @@ export default function About() {
           font-weight: 600;
         }
 
-        /* ── Languages grid: 4 columns, always centered ── */
-        .langs-grid {
+        /* ── Skills: categorized badge grid ── */
+        .skills-grid {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 16px;
-          justify-items: center;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
         }
-        /* Last row: if 3 cards remain, center them */
-        .langs-grid .lang-card:nth-child(5),
-        .langs-grid .lang-card:nth-child(6),
-        .langs-grid .lang-card:nth-child(7) {
-          grid-column: auto;
+        @media (max-width: 800px) {
+          .skills-grid { grid-template-columns: 1fr; }
         }
-        /* Center the orphan row (cards 5-7 when total is 7) */
-        .langs-grid-inner {
-          display: contents;
+        .skill-category {
+          background: rgba(255,255,255,0.03);
+          border: 1px solid rgba(255,255,255,0.08);
+          border-radius: 16px;
+          padding: 20px 22px;
+          transition: border-color 0.3s, box-shadow 0.3s;
         }
-        @media (max-width: 900px) {
-          .langs-grid { grid-template-columns: repeat(3, 1fr); }
+        .skill-category:hover {
+          box-shadow: 0 8px 30px rgba(0,0,0,0.35);
         }
-        @media (max-width: 600px) {
-          .langs-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        /* Lang bar fill transition */
-        .lang-bar-fill {
-          height: 100%;
-          border-radius: 4px;
-          transition: width 1.1s cubic-bezier(0.4,0,0.2,1), box-shadow 1.1s ease;
-        }
-
-        /* Lang card — fixed uniform size */
-        .lang-card {
-          width: 100%;
-          min-height: 180px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          padding: 20px 14px 16px;
-          box-sizing: border-box;
-          transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-        .lang-card:hover {
-          transform: translateY(-4px) scale(1.02);
-        }
-        /* lang-name: fixed height so cards stay same size regardless of text length */
-        .lang-name {
-          font-size: 0.82rem;
-          color: #ccc;
-          text-align: center;
-          min-height: 40px;
+        .skill-category-header {
           display: flex;
           align-items: center;
-          justify-content: center;
-          line-height: 1.3;
-          margin: 10px 0 8px;
+          gap: 10px;
+          margin-bottom: 14px;
         }
-        .lang-bar-track {
-          width: 80%;
-          height: 4px;
-          background: rgba(255,255,255,0.1);
-          border-radius: 4px;
-          overflow: hidden;
-          margin-bottom: 6px;
+        .skill-category-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          flex-shrink: 0;
         }
-        .lang-level {
-          font-size: 0.78rem;
+        .skill-category-label {
+          font-size: 0.85rem;
           font-weight: 700;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
+        .skill-pill-wrap {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+        .skill-pill {
+          font-size: 0.8rem;
+          font-weight: 500;
+          padding: 6px 12px;
+          border-radius: 999px;
+          border: 1px solid;
+          background: rgba(255,255,255,0.02);
+          transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+          cursor: default;
+        }
+        .skill-pill:hover {
+          transform: translateY(-2px);
         }
 
         /* ── Awards grid: always equal 2 columns ── */
@@ -476,8 +434,6 @@ export default function About() {
         @media (max-width: 600px) {
           .awards-grid { grid-template-columns: 1fr; }
         }
-
-        /* Award card new */
         .award-card-new {
           position: relative;
           background: rgba(255,255,255,0.03);
@@ -533,8 +489,6 @@ export default function About() {
           opacity: 1;
           transform: translateY(0);
         }
-
-        /* Section line base */
         .section-line {
           height: 3px;
           width: 60px;

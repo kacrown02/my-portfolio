@@ -13,8 +13,8 @@ const contactCards = [
   {
     icon: "☎",
     label: "Phone",
-    value: "+639555135269",
-    link: "tel:+639555135269",
+    value: "+639242722931",
+    link: "tel:+639242722931",
     btnText: "Call Now",
     color: "#00ffb3",
   },
